@@ -1,0 +1,42 @@
+{
+    "name": "wujunze/php-geo",
+    "description": "php redis geo library",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "wujunze",
+            "email": "itwujunze@163.com"
+        }
+    ],
+    "require": {
+        "php": "^7.1"
+    },
+    "require-dev": {
+        "wujunze/composer-phpcs-plugin": "^1.1",
+        "codedungeon/phpunit-result-printer": "^0.26.2",
+        "phpunit/phpunit": "^8.2",
+        "overtrue/phplint": "^1.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Wujunze\\PhpGeo\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Wujunze\\PhpGeo\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test-html": [
+            "./vendor/bin/phpunit -c ./phpunit.xml.dist --coverage-text"
+        ],
+        "fix": [
+            "./vendor/bin/php-cs-fixer fix $1"
+        ],
+        "lint": [
+            "./vendor/bin/phplint"
+        ]
+    }
+}

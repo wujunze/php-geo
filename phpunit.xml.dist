@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<phpunit printerClass="Codedungeon\PHPUnitPrettyResultPrinter\Printer" backupGlobals="false"
+         backupStaticAttributes="false"
+         colors="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         processIsolation="false"
+         stopOnFailure="false"
+         bootstrap="vendor/autoload.php">
+    <testsuites>
+        <testsuite name="default">
+            <directory suffix="Test.php">./tests</directory>
+        </testsuite>
+
+        <testsuite name="main">
+            <directory suffix="Test.php">./tests</directory>
+            <exclude>./tests/repositories</exclude>
+        </testsuite>
+
+        <testsuite name="repo">
+            <directory suffix="Test.php">./tests/repositories</directory>
+        </testsuite>
+    </testsuites>
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">./src</directory>
+        </whitelist>
+    </filter>
+    <logging>
+        <log type="coverage-clover" target="clover.xml"/>
+    </logging>
+</phpunit>
