@@ -1,6 +1,6 @@
 <?php
 
-This file is part of the php-lisp/php-lisp.
+$header = <<<EOF
 
 This file is part of the php-geo package.
 
