@@ -31,9 +31,6 @@ class DriverFactory
             return new RedisDriver($connection);
         }
 
-        if (!\is_string($connection)) {
-            throw new InvalidArgumentException(sprintf('Unsupported Connection: %s.', \get_class($connection)));
-        }
         switch (true) {
             case 'file' === $connection:
                 return new FileDriver();
