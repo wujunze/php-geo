@@ -13,3 +13,6 @@ build:
         coverage:
           file: clover.xml
           format: php-clover
+        services:
+          # For available tags, see https://hub.docker.com/_/redis/
+          redis: 4
