@@ -10,7 +10,11 @@
         }
     ],
     "require": {
-        "php": "^7.1"
+        "php": "^7.1",
+        "wujunze/support": "^1.0",
+        "predis/predis": "^1.1",
+        "wujunze/helper": "^1.0",
+        "ext-json": "*"
     },
     "require-dev": {
         "wujunze/composer-phpcs-plugin": "^1.1",

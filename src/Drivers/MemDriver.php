@@ -9,8 +9,8 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Wujunze\PhpGeo;
+namespace Wujunze\PhpGeo\Drivers;
 
-interface GeoInterface
+class MemDriver implements DriverInterface
 {
 }

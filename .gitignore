@@ -7,3 +7,4 @@ composer.lock
 .php_cs.cache
 .hg
 .phpunit.result.cache
+clover.xml

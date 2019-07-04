@@ -7,19 +7,10 @@
          convertWarningsToExceptions="true"
          processIsolation="false"
          stopOnFailure="false"
-         bootstrap="vendor/autoload.php">
+         bootstrap="./tests/bootstrap.php">
     <testsuites>
         <testsuite name="default">
             <directory suffix="Test.php">./tests</directory>
-        </testsuite>
-
-        <testsuite name="main">
-            <directory suffix="Test.php">./tests</directory>
-            <exclude>./tests/repositories</exclude>
-        </testsuite>
-
-        <testsuite name="repo">
-            <directory suffix="Test.php">./tests/repositories</directory>
         </testsuite>
     </testsuites>
     <filter>
