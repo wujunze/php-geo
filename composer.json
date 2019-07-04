@@ -18,8 +18,8 @@
     },
     "require-dev": {
         "wujunze/composer-phpcs-plugin": "^1.1",
-        "codedungeon/phpunit-result-printer": "^0.26.2",
-        "phpunit/phpunit": "^8.2",
+        "codedungeon/phpunit-result-printer": "^0.23",
+        "phpunit/phpunit": "^7.5",
         "overtrue/phplint": "^1.1"
     },
     "autoload": {
@@ -33,8 +33,8 @@
         }
     },
     "scripts": {
-        "test-html": [
-            "./vendor/bin/phpunit -c ./phpunit.xml.dist --coverage-text"
+        "test": [
+            "./vendor/bin/phpunit -c phpunit.xml.dist --coverage-text"
         ],
         "fix": [
             "./vendor/bin/php-cs-fixer fix $1"

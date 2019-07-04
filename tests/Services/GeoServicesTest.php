@@ -20,7 +20,7 @@ use Wujunze\PhpGeo\Services\GeoInterface;
 use Wujunze\PhpGeo\Services\GeoService;
 use Wujunze\PhpGeo\Tests\TestCase;
 
-class TestGeoServices extends TestCase
+class GeoServicesTest extends TestCase
 {
     /**
      * @var GeoService

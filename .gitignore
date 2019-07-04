@@ -8,3 +8,4 @@ composer.lock
 .hg
 .phpunit.result.cache
 clover.xml
+.phplint.cache

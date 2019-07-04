@@ -1,5 +1,4 @@
-<?php
-declare(strict_types=1);
+<?php declare(strict_types=1);
 /**
  *
  * This file is part of the php-geo package.
@@ -10,6 +9,10 @@ declare(strict_types=1);
  * with this source code in the file LICENSE.
  */
 
-namespace Wujunze\PhpGeo\Tests;
+namespace Wujunze\PhpGeo;
 
-require __DIR__ . '/../vendor/autoload.php';
+use Wujunze\PhpGeo\Services\GeoService;
+
+class Geo extends GeoService
+{
+}
