@@ -169,6 +169,9 @@ class GeoService implements GeoInterface
         return $this->geoAdd($key, $geo);
     }
 
+    /**
+     * @return mixed
+     */
     public function flushDB()
     {
         return $this->client->flushdb();
