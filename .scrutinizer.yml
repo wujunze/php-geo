@@ -6,13 +6,40 @@ filter:
   excluded_paths:
     - tests/*
 build:
-  tests:
-    override:
-      -
-        command: ./vendor/bin/phpunit --coverage-clover=clover.xml
-        coverage:
-          file: clover.xml
-          format: php-clover
-        services:
-          # For available tags, see https://hub.docker.com/_/redis/
-          redis: 4
+  nodes:
+    some-name:
+      environment:
+        php:
+          version: 7.2.13
+          compile_options: '--enable-sigchild --without-pear'
+
+          # see https://pecl.php.net/
+          pecl_extensions:
+            - redis
+            - memcached
+      services:
+        # For available tags, see https://hub.docker.com/_/redis/
+        redis: 4
+      dependencies:
+        before:
+        # runs before inferred commands
+        override:
+          - command: ./vendor/bin/phpunit --coverage-clover=clover.xml
+            coverage:
+            file: clover.xml
+              format: php-clover
+
+        after:
+      # runs after inferred commands
+      # ...
+
+      project_setup:
+      # ...
+
+      tests:
+      # ...
+
+      cache:
+        directories:
+
+
