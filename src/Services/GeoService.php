@@ -129,6 +129,62 @@ class GeoService implements GeoInterface
      */
     public function geoRadius(string $key, GeoCriteria $geoCriteria): array
     {
+        return $this->client->georadius(
+            $key,
+            $geoCriteria->getLong(),
+            $geoCriteria->getLat(),
+            $geoCriteria->getRadius(),
+            $geoCriteria->getUnit(),
+            $this->formatOptions($geoCriteria)
+        );
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function geoRadiusByMember(string $key, GeoCriteria $geoCriteria): array
+    {
+        return $this->client->georadiusbymember(
+            $key,
+            $geoCriteria->getMember(),
+            $geoCriteria->getRadius(),
+            $geoCriteria->getUnit(),
+            $this->formatOptions($geoCriteria)
+        );
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function geoRemove(string $key, string $member): int
+    {
+        return $this->client->zrem($key, $member);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function geoReset(string $key, Geo $geo): bool
+    {
+        $this->client->zrem($key, $geo->getMember());
+
+        return $this->geoAdd($key, $geo);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function flushDB()
+    {
+        return $this->client->flushdb();
+    }
+
+    /**
+     * @param  GeoCriteria $geoCriteria
+     * @return array
+     */
+    private function formatOptions(GeoCriteria $geoCriteria): array
+    {
         $options = [];
         if ($geoCriteria->isWithCoord()) {
             $options['WITHCOORD'] = true;
@@ -158,52 +214,6 @@ class GeoService implements GeoInterface
             $options['STOREDIST'] = $geoCriteria->getStoreDist();
         }
 
-        return $this->client->georadius(
-            $key,
-            $geoCriteria->getLong(),
-            $geoCriteria->getLat(),
-            $geoCriteria->getRadius(),
-            $geoCriteria->getUnit(),
-            $options
-        );
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function geoRadiusByMember(string $key, GeoCriteria $geoCriteria): array
-    {
-        return $this->client->georadiusbymember(
-            $key,
-            $geoCriteria->getMember(),
-            $geoCriteria->getRadius(),
-            $geoCriteria->getUnit()
-        );
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function geoRemove(string $key, string $member): int
-    {
-        return $this->client->zrem($key, $member);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function geoReset(string $key, Geo $geo): bool
-    {
-        $this->client->zrem($key, $geo->getMember());
-
-        return $this->geoAdd($key, $geo);
-    }
-
-    /**
-     * @return mixed
-     */
-    public function flushDB()
-    {
-        return $this->client->flushdb();
+        return $options;
     }
 }

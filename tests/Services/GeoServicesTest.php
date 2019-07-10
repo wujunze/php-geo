@@ -228,7 +228,7 @@ class GeoServicesTest extends TestCase
     /**
      * @depends  testAdd
      */
-    public function testGeoRadius0910()
+    public function testGeoRadius20190910()
     {
         $criteria = new GeoCriteria();
         $criteria
@@ -249,5 +249,29 @@ class GeoServicesTest extends TestCase
         $this->assertEquals('4025806740894210', $geos[2][2]);
         $this->assertCount(3, $geos);
         $this->assertCount(4, $geos[0]);
+    }
+
+    /**
+     * @depends  testAdd
+     */
+    public function testGeoRadiusByMember20190910()
+    {
+        $criteria = new GeoCriteria();
+        $criteria->setRadius(100000)
+            ->setUnit('m')
+            ->setMember('桐柏')
+            ->setWithCoord(true)
+            ->setWithDist(true)
+            ->setWithHash(true)
+            ->setCount(6)
+            ->setSort('asc');
+        $geos = self::$geoService->geoRadiusByMember('city', $criteria);
+        $this->assertIsArray($geos);
+        $this->assertIsArray($geos[0]);
+        $this->assertEquals('桐柏', $geos[0][0]);
+        $this->assertEquals('泌阳', $geos[1][0]);
+        $this->assertEquals('唐河', $geos[2][0]);
+        $this->assertEquals('4063867911107045', $geos[2][2]);
+        $this->assertCount(6, $geos);
     }
 }
