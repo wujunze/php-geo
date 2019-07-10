@@ -129,12 +129,42 @@ class GeoService implements GeoInterface
      */
     public function geoRadius(string $key, GeoCriteria $geoCriteria): array
     {
+        $options = [];
+        if ($geoCriteria->isWithCoord()) {
+            $options['WITHCOORD'] = true;
+        }
+
+        if ($geoCriteria->isWithDist()) {
+            $options['WITHDIST'] = true;
+        }
+
+        if ($geoCriteria->isWithHash()) {
+            $options['WITHHASH'] = true;
+        }
+
+        if ($geoCriteria->getCount()) {
+            $options['COUNT'] = $geoCriteria->getCount();
+        }
+
+        if ($geoCriteria->getSort()) {
+            $options['SORT'] = $geoCriteria->getSort();
+        }
+
+        if ($geoCriteria->getStore()) {
+            $options['STORE'] = $geoCriteria->getStore();
+        }
+
+        if ($geoCriteria->getStoreDist()) {
+            $options['STOREDIST'] = $geoCriteria->getStoreDist();
+        }
+
         return $this->client->georadius(
             $key,
             $geoCriteria->getLong(),
             $geoCriteria->getLat(),
             $geoCriteria->getRadius(),
-            $geoCriteria->getUnit()
+            $geoCriteria->getUnit(),
+            $options
         );
     }
 

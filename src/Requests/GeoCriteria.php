@@ -36,6 +36,11 @@ class GeoCriteria implements Arrayable
     /**
      * @var bool
      */
+    private $withDist;
+
+    /**
+     * @var bool
+     */
     private $withHash;
 
     /**
@@ -44,9 +49,9 @@ class GeoCriteria implements Arrayable
     private $count;
 
     /**
-     * @var bool true=> asc  false => desc
+     * @var string
      */
-    private $asc;
+    private $sort;
 
     /**
      * @var string
@@ -188,20 +193,20 @@ class GeoCriteria implements Arrayable
     }
 
     /**
-     * @return bool
+     * @return string
      */
-    public function isAsc()
+    public function getSort()
     {
-        return $this->asc;
+        return $this->sort;
     }
 
     /**
-     * @param  bool        $asc
+     * @param  string      $sort
      * @return GeoCriteria
      */
-    public function setAsc(bool $asc): GeoCriteria
+    public function setSort(string $sort): GeoCriteria
     {
-        $this->asc = $asc;
+        $this->sort = $sort;
 
         return $this;
     }
@@ -278,6 +283,25 @@ class GeoCriteria implements Arrayable
     public function setLat(string $lat): GeoCriteria
     {
         $this->lat = $lat;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isWithDist()
+    {
+        return $this->withDist;
+    }
+
+    /**
+     * @param  bool        $withDist
+     * @return GeoCriteria
+     */
+    public function setWithDist(bool $withDist): GeoCriteria
+    {
+        $this->withDist = $withDist;
 
         return $this;
     }

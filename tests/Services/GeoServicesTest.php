@@ -224,4 +224,30 @@ class GeoServicesTest extends TestCase
 
         return $cities;
     }
+
+    /**
+     * @depends  testAdd
+     */
+    public function testGeoRadius0910()
+    {
+        $criteria = new GeoCriteria();
+        $criteria
+            ->setLong('102.55')
+            ->setLat('31.79')
+            ->setRadius(100000)
+            ->setUnit('m')
+            ->setWithCoord(true)
+            ->setWithDist(true)
+            ->setWithHash(true)
+            ->setCount(3)
+            ->setSort('desc');
+        $geos = self::$geoService->geoRadius('city', $criteria);
+        $this->assertIsArray($geos);
+        $this->assertIsArray($geos[0]);
+        $this->assertEquals('小金', $geos[0][0]);
+        $this->assertEquals('理县', $geos[2][0]);
+        $this->assertEquals('4025806740894210', $geos[2][2]);
+        $this->assertCount(3, $geos);
+        $this->assertCount(4, $geos[0]);
+    }
 }
