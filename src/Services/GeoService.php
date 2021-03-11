@@ -105,7 +105,7 @@ class GeoService implements GeoInterface
      */
     public function geoDist(string $key, string $fromMember, string $toMember, string $unit = 'm'): string
     {
-        return $this->client->geodist($key, $fromMember, $toMember, $unit);
+        return $this->client->geodist($key, $fromMember, $toMember, $unit) ?? '';
     }
 
     /**
